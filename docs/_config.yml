@@ -1,0 +1,6 @@
+strict_font_matter: true
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
