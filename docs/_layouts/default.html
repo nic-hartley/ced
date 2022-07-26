@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>{{ page.title }} | Code Every Day</title>
@@ -19,4 +20,36 @@
       <a class="right" href="https://github.com/nic-hartley/ced">See the code online</a>
     </div>
   </body>
+  <script>
+    function fix_urls(elem, attr, filter=_=>true) {
+      if (!location.host.endsWith("github.io")) {
+          return;
+      }
+      let here = new URL(location.href).host;
+      for (let link of document.querySelectorAll(elem)) {
+        console.log(link);
+        if (!filter(link)) {
+          console.log("filtered");
+          continue;
+        }
+        try {
+          let url = new URL(link[attr]);
+          if (url.host == here) {
+            url.pathname = "/ced" + url.pathname;
+            console.log("replacing URL with " + url);
+            link[attr] = url;
+          } else {
+            console.log("url", link[attr], "isn't at", here)
+          }
+        } catch (err) {
+          console.log("failed:", err);
+          continue;
+        }
+      }
+    }
+
+    fix_urls("a", "href");
+    fix_urls("script", "src");
+    fix_urls("link", "href", e => e.rel == "stylesheet");
+  </script>
 </html>
