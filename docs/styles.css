@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&family=IBM+Plex+Sans&display=swap');
+
+/* theme details */
+:root {
+    --background: beige;
+    --text: black;
+    --accent: darkred;
+    --font-size: 14pt;
+    --margin: 7pt;
+}
+
+/* default styles */
+html, body {
+    width: 100%;
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: var(--background);
+    color: var(--text);
+    font: var(--font-size) 'IBM Plex Sans';
+}
+p {
+    margin: 0;
+    padding: 0;
+}
+a {
+    color: inherit;
+}
+a[href="/listen"]::after {
+    content: ' \1F50A'; /* speaker U+1F50A */
+}
+
+/* header and footer */
+#nav, #footer {
+    background-color: var(--accent);
+    color: var(--background);
+    font-size: 0;
+}
+
+#nav a, #footer p, #footer a {
+    display: inline-block;
+    padding: 0.5em;
+    text-decoration: none;
+    font-size: var(--font-size);
+}
+#nav a:hover, #footer a:hover {
+    background-image: linear-gradient(#0004, #0004);
+}
+
+#nav a.listen, #footer a.right {
+    float: right;
+}
+
+#nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+/* content styling */
+#content {
+    counter-reset: h2Numbering h3Numbering;
+}
+#content a {
+    text-decoration: underline blue 2px;
+}
+#content a:hover {
+    text-decoration: underline blue 3px;
+}
+#content p {
+    margin: var(--margin);
+}
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+    font-family: 'IBM Plex Mono';
+    margin: calc(2 * var(--margin)) var(--margin);
+}
+#content h1 {
+    text-align: center;
+}
+#content h2 {
+    counter-increment: h2Numbering;
+}
+#content h2::before {
+    font-size: 80%;
+    content: counter(h2Numbering) ". ";
+}
+#content h3 {
+    counter-increment: h3Numbering;
+}
+#content h3::before {
+    font-size: 80%;
+    content: counter(h2Numbering) "." counter(h3Numbering) ". ";
+}
+#content h4 {
+    counter-increment: h4Numbering;
+}
+#content h4::before {
+    font-size: 80%;
+    content: counter(h2Numbering) "." counter(h3Numbering) "." counter(h4Numbering) ". ";
+}
