@@ -26,9 +26,6 @@ p {
 a {
     color: inherit;
 }
-a[href="/listen"]::after {
-    content: ' \1F50A'; /* speaker U+1F50A */
-}
 
 /* header and footer */
 #nav, #footer {
